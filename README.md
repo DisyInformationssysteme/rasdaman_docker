@@ -1,7 +1,27 @@
 rasdaman_docker
 ===============
-A Docker image for running Rasdaman including petascope and rasgeo extensions.
+This repository is our version of `https://github.com/mappl/rasdaman_docker`.
+It contains all sources to build a docker image hosting a rasdaman server. 
+The image includes the necessary postgres database. 
+Furthermore additional tooling was added to provide a reasonable shell within the image.
+For our purposes also an R studio server was added.
 
+This image main use-case is aiding the development of raster data applications.
+It is not fit for use in production.
+
+The image exposes the following ports:
+* SSH: Port 22
+* Petascope: http://localhost:8080/rasdaman/ows
+* RStudio: http://localhost:8787/
+
+Example for running a container:
+
+``docker run -d --restart=always --name=rasdaman -p 9000:8080 -p 9001:8787 -p 9002:22 -v /local/data/directory/:/opt/shared docker.disy.net/rasdaman:latest``
+
+
+/Original README.md:/
+
+A Docker image for running Rasdaman including petascope and rasgeo extensions.
 
 # News
 - (2015-02-13) RStudio Server added for client access to RRasdaman 
