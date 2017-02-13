@@ -1,6 +1,6 @@
 rasdaman_docker
 ===============
-This repository is our version of `https://github.com/mappl/rasdaman_docker`.
+This repository is our version of https://github.com/mappl/rasdaman_docker.
 It contains all sources to build a docker image hosting a rasdaman server. 
 The image includes the necessary postgres database. 
 Furthermore additional tooling was added to provide a reasonable shell within the image.
@@ -19,7 +19,7 @@ Example for running a container:
 ``docker run -d --restart=always --name=rasdaman -p 9000:8080 -p 9001:8787 -p 9002:22 -v /local/data/directory/:/opt/shared docker.disy.net/rasdaman:latest``
 
 
-/Original README.md:/
+*Original README.md:*
 
 A Docker image for running Rasdaman including petascope and rasgeo extensions.
 
