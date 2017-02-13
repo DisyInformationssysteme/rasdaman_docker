@@ -12,8 +12,7 @@ echo -e "... rasdaman started"
 rstudio-server start
 sleep 3
 echo -e "... rstudio-server started"
-/opt/tomcat6/bin/startup.sh >/dev/null
+/opt/tomcat/bin/startup.sh >/dev/null
 sleep 10
 echo -e "... tomcat6 started"
 echo -e "DONE.\n\n"
-

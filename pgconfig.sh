@@ -12,11 +12,9 @@ if [ $# -lt 3 ]; then
     exit 1
 fi
 
-
 TOTAL_RAM=$1
 USERS=$2
 POSTGRES_CONFFILE=$3
-
 
 MAX_CONNECTIONS=$((USERS*40))
 SHARED_BUFFERS=$((TOTAL_RAM/4))
@@ -24,6 +22,7 @@ WORK_MEM=$((TOTAL_RAM/USERS/8))
 if [ $WORK_MEM -lt 128 ]; then
     WORK_MEM=128
 fi
+
 MAINTANANCE_WORK_MEM=$((TOTAL_RAM/16))
 SYNCHRONOUS_COMMIT=off
 WAL_BUFFERS=16
@@ -34,13 +33,11 @@ EFFECTIVE_CACHE_SIZE=$((TOTAL_RAM-SHARED_BUFFERS))
 LOGGING_COLLECTION=on
 LOG_LINE_PREFIX='%t '
 
-
 SHARED_BUFFERS="${SHARED_BUFFERS}MB"
 WORK_MEM="${WORK_MEM}MB"
 MAINTANANCE_WORK_MEM="${MAINTANANCE_WORK_MEM}MB"
 WAL_BUFFERS="${WAL_BUFFERS}MB"
 EFFECTIVE_CACHE_SIZE="${EFFECTIVE_CACHE_SIZE}MB"
-
 
 # Test output
 echo -e "The following settings will be written to postgresql.conf:"
@@ -57,17 +54,12 @@ echo -e "effective_cache_size = ${EFFECTIVE_CACHE_SIZE}"
 echo -e "logging_collector = ${LOGGING_COLLECTION}"
 #echo -e "log_line_prefix = ${LOG_LINE_PREFIX}"
 
-
 read -p "Are you sure you want to use these postgres settings? Type y or n"  -n 1 -r REPLY
 echo    # (optional) move to a new line
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
-    exit 1
+	exit 1
 fi
-
-
-
-
 
 # Write to postgresql.conf
 
@@ -100,9 +92,6 @@ echo -e "effective_cache_size = ${EFFECTIVE_CACHE_SIZE}" >> $POSTGRES_CONFFILE
 echo -e "logging_collector = ${LOGGING_COLLECTION}" >> $POSTGRES_CONFFILE
 #echo -e "log_line_prefix = ${LOG_LINE_PREFIX}"  >> $POSTGRES_CONFFILE
 echo -e "###################################################################\n\n" >> $POSTGRES_CONFFILE
-
-
-
 
 # Restart postgres
 echo -e "Restarting postgres..."
